@@ -20,5 +20,6 @@ class dataBase
 
 }
 
+//$obj = new dataBase();
+//print_r($obj->connect());
 
-?>
