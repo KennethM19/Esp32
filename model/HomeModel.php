@@ -34,6 +34,16 @@ class HomeModel
             return false;
         }
     }
+
+    public function addPatient($name,$lastname,$age,$gender)
+    {
+        $statement = $this->PDO->prepare("INSERT INTO patient VALUES (null, :name, :lastname, :age, :gender)");
+        $statement->bindParam(":name", $name);
+        $statement->bindParam(":lastname", $lastname);
+        $statement->bindParam(":age", $age);
+        $statement->bindParam(":gender", $gender);
+        return ($statement->execute()) ? true : false;
+    }
 }
 
 

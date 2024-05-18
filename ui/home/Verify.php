@@ -9,16 +9,17 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     if ($isVerified) {
         if ($user == 'admin' && $password == 'admin') {
             $_SESSION['user'] = $user;
+            session_destroy();
             $redirectUrl = 'NewLogin.php';
             header('location: ' . $redirectUrl);
         } else {
             $_SESSION['user'] = $user;
-            $redirectUrl = 'Home.php';
+            $redirectUrl = 'Patient.php';
             header('location: ' . $redirectUrl);
         }
     } else {
         $error = "<li>Credenciales incorrectas</li>";
-        header("location:login.php?error=" . $error);
+        header("location:index.php?error=" . $error);
     }
 
 } else {

@@ -1,7 +1,7 @@
 <?php
 require_once ('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
-    header('location: Login.php');
+    header('location: Index.php');
 }
 ?>
 <!DOCTYPE HTML>

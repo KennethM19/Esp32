@@ -1,0 +1,11 @@
+html {
+    font-family: Arial;
+    text-align: center;
+}
+
+.top {
+    overflow: hidden;
+    background-color: #0c6980;
+    color: white;
+}
+

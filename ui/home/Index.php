@@ -1,7 +1,7 @@
 <?php
 require_once("D:\UNMSM\IHC\ESP32\ui\head\Head.php");
 if (!empty($_SESSION['user'])){
-    header('location: Home.php');
+    header('location: Patient.php');
 }
 ?>
 <link rel="stylesheet" href="../../asset/css/LoginStyle.css">
