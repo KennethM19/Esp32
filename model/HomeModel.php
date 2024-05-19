@@ -35,15 +35,23 @@ class HomeModel
         }
     }
 
-    public function addPatient($name,$lastname,$age,$gender)
+    public function addPatient($docType, $docNum, $name, $lastname, $age, $gender)
     {
-        $statement = $this->PDO->prepare("INSERT INTO patient VALUES (null, :name, :lastname, :age, :gender)");
+        $statement = $this->PDO->prepare("INSERT INTO patient VALUES (null, :docType, :docNum, :name, :lastname, :age, :gender)");
+        $statement->bindParam(":docType", $docType);
+        $statement->bindParam(":docNum", $docNum);
         $statement->bindParam(":name", $name);
         $statement->bindParam(":lastname", $lastname);
         $statement->bindParam(":age", $age);
         $statement->bindParam(":gender", $gender);
         return ($statement->execute()) ? true : false;
     }
+
+    public function getPatients($numIdentity, $user, $lastname, $age, $gender)
+    {
+
+    }
+
 }
 
 

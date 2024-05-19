@@ -16,11 +16,11 @@ class HomeController
         return $this->MODEL->updateUser($this->cleanData($user), $this->encryptPassword($this->cleanData($password)));
     }
 
-    public function cleanData($password)
+    public function cleanData($data)
     {
-        $password = strip_tags($password);
-        $password = filter_var($password, FILTER_UNSAFE_RAW);
-        return htmlspecialchars($password);
+        $data = strip_tags($data);
+        $data = filter_var($data, FILTER_UNSAFE_RAW);
+        return htmlspecialchars($data);
     }
 
     public function encryptPassword($password)
