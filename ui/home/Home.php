@@ -3,6 +3,7 @@ require_once ('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
     header('location: Index.php');
 }
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -19,9 +20,13 @@ if (empty($_SESSION['user'])) {
 <div class="topnav">
     <h3>ESP32 WITH MYSQL DATABASE</h3>
     <a href="Logout.php" class="button">Cerrar Sesión</a>
+    <a href="Patient.php" class="button">Nuevo Paciente</a>
 </div>
 
-<br>
+<div>
+    <h3>PACIENTE</h3>
+
+</div>
 
 
 <div class="content">
@@ -72,7 +77,7 @@ if (empty($_SESSION['user'])) {
     <div class="cards">
         <div class="card header" style="border-radius: 15px;">
             <h3 style="font-size: 0.7rem;">LAST TIME RECEIVED DATA FROM ESP32 [ <span id="ESP32_01_LTRD"></span> ]</h3>
-            <button onclick="window.open('recordtable.php', '_blank');">Open Record Table</button>
+            <button onclick="window.open('recordPatient.php');">Open Record Table</button>
             <h3 style="font-size: 0.7rem;"></h3>
         </div>
     </div>

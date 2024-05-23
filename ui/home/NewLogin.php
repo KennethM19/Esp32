@@ -20,19 +20,9 @@ require_once("D:\UNMSM\IHC\ESP32\ui\head\Head.php");
             </div>
             <div class="credential">
                 <label for="password">Nueva contraseña</label>
-                <div class="box-eye">
-                    <button type="button" onclick="showPassword('password','eyePassword')">
-                        <i id="eyePassword" class="bi bi-eye eyeChange"></i>
-                    </button>
-                </div>
-                <input type="password" size="30" name="password" id="password">
+                <input type="password" name="password" id="password">
                 <label for="password">Confirmar contraseña</label>
-                <div class="box-eye">
-                    <button type="button" onclick="showPassword('confirmPassword','eyePassword2')">
-                        <i id="eyePassword2" class="bi bi-eye eyeChange"></i>
-                    </button>
-                </div>
-                <input type="password" name="confirmPassword" size="30" id="confirmPassword">
+                <input type="password" name="confirmPassword" id="confirmPassword">
             </div>
             <?php if (!empty($_GET['error'])): ?>
                 <div id="alertError" class="alert alert-danger mb-2" role="alert">

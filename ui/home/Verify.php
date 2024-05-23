@@ -14,7 +14,7 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
             header('location: ' . $redirectUrl);
         } else {
             $_SESSION['user'] = $user;
-            $redirectUrl = 'Patient.php';
+            $redirectUrl = 'recordPatient.php';
             header('location: ' . $redirectUrl);
         }
     } else {

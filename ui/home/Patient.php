@@ -3,6 +3,7 @@ require_once('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
     header('location: Index.php');
 }
+require_once ('Patient.php')
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -30,6 +31,7 @@ if (empty($_SESSION['user'])) {
 <div class="content">
     <div class=" ">
         <h3 style="font-size: 1rem;">PACIENTE</h3>
+
     </div>
     <form action="PatientForm.php" method="post" autocomplete="off" class="patient">
         <div>
@@ -47,10 +49,6 @@ if (empty($_SESSION['user'])) {
         <div>
             <label for="lastname">Apellido</label>
             <input type="text" name="lastName">
-        </div>
-        <div>
-            <label for="">Edad</label>
-            <input type="text" name="age">
         </div>
         <div>
             <label for="gender">Género</label>

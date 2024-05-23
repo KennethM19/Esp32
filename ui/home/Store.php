@@ -14,7 +14,7 @@ if (empty($user) || empty($password) || empty($confirmPassword)) {
 } else if ($user && $password && $confirmPassword) {
     if ($password == $confirmPassword) {
         if ($obj->saveNewLogin($user, $password)) {
-            $redirectUrl = "Patient.php";
+            $redirectUrl = "recordPatient.php";
             header("Location: " . $redirectUrl);
         }
 
