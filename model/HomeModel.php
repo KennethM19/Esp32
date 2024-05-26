@@ -46,17 +46,11 @@ class HomeModel
         return ($statement->execute()) ? true : false;
     }
 
-    public function getPatients($docNum, $column)
+    public function getPatients()
     {
-            $statement = $this->PDO->prepare("SELECT * FROM patient WHERE docNum = :docNum");
-            $statement->bindParam(":docNum", $docNum);
+            $statement = $this->PDO->prepare("SELECT * FROM patient");
             if ($statement->execute()) {
-                $result = $statement->fetchAll();
-                if ($result) {
-                    return $result[$column];
-                } else {
-                    return false;
-                }
+                return $statement->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 return false;
             }

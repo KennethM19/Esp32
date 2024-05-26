@@ -1,9 +1,11 @@
 <?php
 require_once('../../config/Sessions.php');
+require_once('../../model/HomeModel.php');
 if (empty($_SESSION['user'])) {
     header('location: Index.php');
 }
-
+$model = new HomeModel();
+$patients = $model->getPatients();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -26,7 +28,7 @@ if (empty($_SESSION['user'])) {
 
 <section class="container">
     <div class="managPatient">
-        <button>Nuevo</button>
+        <a href="Patient.php" class="button">Nuevo</a>
         <input type="text" placeholder="Buscar paciente">
     </div>
     <table class="styled-table" id="table_id">
@@ -39,13 +41,26 @@ if (empty($_SESSION['user'])) {
             <th>GÉNERO</th>
         </tr>
         </thead>
-        <tbody>
-        <?php
-        require_once("D:\UNMSM\IHC\ESP32\config\Database.php");
+        <tbody id="record_patient">
+        <?php if ($patients): ?>
+            <?php
+            foreach ($patients as $patient):
+                ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($patient['docType']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['docNum']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['name']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['lastname']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['gender']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+        <?php endif; ?>
 
-        ?>
         </tbody>
-        <tbody id="tbody_table_record"></tbody>
     </table>
 
 </section>

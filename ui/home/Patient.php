@@ -3,7 +3,6 @@ require_once('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
     header('location: Index.php');
 }
-require_once ('Patient.php')
 ?>
 <!DOCTYPE HTML>
 <html lang="es">

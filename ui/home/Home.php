@@ -20,7 +20,7 @@ if (empty($_SESSION['user'])) {
 <div class="topnav">
     <h3>ESP32 WITH MYSQL DATABASE</h3>
     <a href="Logout.php" class="button">Cerrar Sesión</a>
-    <a href="Patient.php" class="button">Nuevo Paciente</a>
+    <a href="recordPatient.php" class="button">Nuevo Paciente</a>
 </div>
 
 <div>
