@@ -16,6 +16,7 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
             $_SESSION['user'] = $user;
             $redirectUrl = 'recordPatient.php';
             header('location: ' . $redirectUrl);
+            exit();
         }
     } else {
         $error = "<li>Credenciales incorrectas</li>";

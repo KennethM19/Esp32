@@ -2,6 +2,7 @@
 require_once('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
     header('location: Index.php');
+    exit();
 }
 ?>
 <!DOCTYPE HTML>

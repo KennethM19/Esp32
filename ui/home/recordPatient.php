@@ -3,6 +3,7 @@ require_once('../../config/Sessions.php');
 require_once('../../model/HomeModel.php');
 if (empty($_SESSION['user'])) {
     header('location: Index.php');
+    exit();
 }
 $model = new HomeModel();
 $patients = $model->getPatients();
@@ -29,7 +30,7 @@ $patients = $model->getPatients();
 <section class="container">
     <div class="managPatient">
         <a href="Patient.php" class="button">Nuevo</a>
-        <input type="text" placeholder="Buscar paciente">
+        <input type="text" placeholder="Buscar paciente" id="campo" name="campo" onkeyup="searchPatient()">
     </div>
     <table class="styled-table" id="table_id">
         <thead>
@@ -47,11 +48,13 @@ $patients = $model->getPatients();
             foreach ($patients as $patient):
                 ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($patient['docType']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['docNum']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['name']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['lastname']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['gender']) ?></td>
+                    <a href="Home.php" class="button">
+                        <td><?php echo htmlspecialchars($patient['docType']) ?></td>
+                        <td><?php echo htmlspecialchars($patient['docNum']) ?></td>
+                        <td><?php echo htmlspecialchars($patient['name']) ?></td>
+                        <td><?php echo htmlspecialchars($patient['lastname']) ?></td>
+                        <td><?php echo htmlspecialchars($patient['gender']) ?></td>
+                    </a>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
@@ -168,6 +171,28 @@ $patients = $model->getPatients();
         changePage(current_page);
     };
     //------------------------------------------------------------
+
+    function searchPatient(){
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("campo");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("table_id");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none";
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
 </script>
 </body>
 </html>
