@@ -32,7 +32,7 @@ if (empty($docType) || empty($docNum) || empty($name) || empty($lastname) || emp
         exit();
     } else {
         if ($patient->savePatient($docType, $docNum, $name, $lastname, $gender)) {
-            $redirectUrl = "Home.php";
+            $redirectUrl = "Home.php?dni=" . $docNum . "&name=" . $name;
             header("Location: " . $redirectUrl);
         } else {
             echo "Ocurrio un error al guardar los datos";

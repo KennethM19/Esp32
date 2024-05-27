@@ -54,10 +54,6 @@ body {
     text-align: left;
 }
 
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
 .styled-table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
@@ -66,10 +62,6 @@ body {
 .bdr {
     border-right: 1px solid #e3e3e3;
     border-left: 1px solid #e3e3e3;
-}
-
-td:hover {
-    background-color: rgba(12, 105, 128, 0.21);
 }
 
 tr:hover {

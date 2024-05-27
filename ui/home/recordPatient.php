@@ -9,7 +9,7 @@ $model = new HomeModel();
 $patients = $model->getPatients();
 ?>
 <!DOCTYPE HTML>
-<html>
+<html lang="es">
 <head>
     <title>ESP32 WITH MYSQL DATABASE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,13 +47,13 @@ $patients = $model->getPatients();
             <?php
             foreach ($patients as $patient):
                 ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($patient['docType']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['docNum']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['name']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['lastname']) ?></td>
-                    <td><?php echo htmlspecialchars($patient['gender']) ?></td>
-                </tr>
+                <?php echo '<tr onclick="redirectPatient(' . $patient['docNum'] . ',\'' . $patient['name'] . '\')">' ?>
+                <td><?php echo htmlspecialchars($patient['docType']) ?></td>
+                <td><?php echo htmlspecialchars($patient['docNum']) ?></td>
+                <td><?php echo htmlspecialchars($patient['name']) ?></td>
+                <td><?php echo htmlspecialchars($patient['lastname']) ?></td>
+                <td><?php echo htmlspecialchars($patient['gender']) ?></td>
+                <?php echo '</tr>' ?>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
@@ -70,7 +70,7 @@ $patients = $model->getPatients();
 <div class="btn-group">
     <button class="button" id="btn_prev" onclick="prevPage()">Prev</button>
     <button class="button" id="btn_next" onclick="nextPage()">Next</button>
-    <div style="display: inline-block; position:relative; border: 0px solid #e3e3e3; float: center; margin-left: 2px;">
+    <div style="display: inline-block; position:relative; border: 0 solid #e3e3e3; float: center; margin-left: 2px;">
         <p style="position:relative; font-size: 14px;"> Table : <span id="page"></span></p>
     </div>
     <select name="number_of_rows" id="number_of_rows">
@@ -86,13 +86,12 @@ $patients = $model->getPatients();
 
 <script>
 
-    var current_page = 1;
-    var records_per_page = 10;
-    var l = document.getElementById("table_id").rows.length
+    let current_page = 1;
+    let records_per_page = 10;
+    let l = document.getElementById("table_id").rows.length;
 
     function apply_Number_of_Rows() {
-        var x = document.getElementById("number_of_rows").value;
-        records_per_page = x;
+        records_per_page = document.getElementById("number_of_rows").value;
         changePage(current_page);
     }
 
@@ -114,10 +113,10 @@ $patients = $model->getPatients();
 
 
     function changePage(page) {
-        var btn_next = document.getElementById("btn_next");
-        var btn_prev = document.getElementById("btn_prev");
-        var listing_table = document.getElementById("table_id");
-        var page_span = document.getElementById("page");
+        const btn_next = document.getElementById("btn_next");
+        const btn_prev = document.getElementById("btn_prev");
+        const listing_table = document.getElementById("table_id");
+        const page_span = document.getElementById("page");
 
         // Validate page
         if (page < 1) page = 1;
@@ -128,33 +127,25 @@ $patients = $model->getPatients();
         });
         listing_table.rows[0].style.display = ""; // display the title row
 
-        for (var i = (page - 1) * records_per_page + 1; i < (page * records_per_page) + 1; i++) {
+        for (let i = (page - 1) * records_per_page + 1; i < (page * records_per_page) + 1; i++) {
             if (listing_table.rows[i]) {
                 listing_table.rows[i].style.display = ""
             } else {
-                continue;
+
             }
         }
 
         page_span.innerHTML = page + "/" + numPages() + " (Total Number of Rows = " + (l - 1) + ") | Number of Rows : ";
 
-        if (page == 0 && numPages() == 0) {
+        if (page === 0 && numPages() === 0) {
             btn_prev.disabled = true;
             btn_next.disabled = true;
             return;
         }
 
-        if (page == 1) {
-            btn_prev.disabled = true;
-        } else {
-            btn_prev.disabled = false;
-        }
+        btn_prev.disabled = page === 1;
 
-        if (page == numPages()) {
-            btn_next.disabled = true;
-        } else {
-            btn_next.disabled = false;
-        }
+        btn_next.disabled = page === numPages();
     }
 
 
@@ -164,15 +155,14 @@ $patients = $model->getPatients();
 
 
     window.onload = function () {
-        var x = document.getElementById("number_of_rows").value;
-        records_per_page = x;
+        records_per_page = document.getElementById("number_of_rows").value;
         changePage(current_page);
     };
 
     //------------------------------------------------------------
 
     function searchPatient() {
-        var input, filter, table, tr, td, i, j, txtValue;
+        let input, filter, table, tr, td, i, j, txtValue;
         input = document.getElementById("campo");
         filter = input.value.toLowerCase();
         table = document.getElementById("table_id");
@@ -191,6 +181,10 @@ $patients = $model->getPatients();
                 }
             }
         }
+    }
+
+    function redirectPatient(dni, name) {
+        window.location.href = 'Home.php?dni=' + dni + '&name=' + name;
     }
 </script>
 </body>

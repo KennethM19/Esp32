@@ -67,6 +67,14 @@ body {
     color: #1b78e2;
 }
 
+.oxygenBloodColor {
+    color: crimson;
+}
+
+.heartbeatColor {
+    color: darkkhaki;
+}
+
 .statusreadColor {
     color: #702963;
     font-size: 12px;
