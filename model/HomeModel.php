@@ -48,12 +48,12 @@ class HomeModel
 
     public function getPatients()
     {
-            $statement = $this->PDO->prepare("SELECT * FROM patient");
-            if ($statement->execute()) {
-                return $statement->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return false;
-            }
+        $statement = $this->PDO->prepare("SELECT * FROM patient");
+        if ($statement->execute()) {
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return false;
+        }
     }
 
 }

@@ -1,11 +1,13 @@
 <?php
 
-class PatientController{
+class PatientController
+{
 
     private $MODEL;
+
     public function __construct()
     {
-        require_once ("D:\UNMSM\IHC\ESP32\model\HomeModel.php");
+        require_once("D:\UNMSM\IHC\ESP32\model\HomeModel.php");
         $this->MODEL = new HomeModel();
     }
 

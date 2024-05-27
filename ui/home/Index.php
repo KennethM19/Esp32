@@ -1,6 +1,6 @@
 <?php
 require_once("D:\UNMSM\IHC\ESP32\ui\head\Head.php");
-if (!empty($_SESSION['user'])){
+if (!empty($_SESSION['user'])) {
     header('location: recordPatient.php');
 }
 ?>

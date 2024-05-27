@@ -48,13 +48,11 @@ $patients = $model->getPatients();
             foreach ($patients as $patient):
                 ?>
                 <tr>
-                    <a href="Home.php" class="button">
-                        <td><?php echo htmlspecialchars($patient['docType']) ?></td>
-                        <td><?php echo htmlspecialchars($patient['docNum']) ?></td>
-                        <td><?php echo htmlspecialchars($patient['name']) ?></td>
-                        <td><?php echo htmlspecialchars($patient['lastname']) ?></td>
-                        <td><?php echo htmlspecialchars($patient['gender']) ?></td>
-                    </a>
+                    <td><?php echo htmlspecialchars($patient['docType']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['docNum']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['name']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['lastname']) ?></td>
+                    <td><?php echo htmlspecialchars($patient['gender']) ?></td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
@@ -170,9 +168,10 @@ $patients = $model->getPatients();
         records_per_page = x;
         changePage(current_page);
     };
+
     //------------------------------------------------------------
 
-    function searchPatient(){
+    function searchPatient() {
         var input, filter, table, tr, td, i, j, txtValue;
         input = document.getElementById("campo");
         filter = input.value.toLowerCase();
