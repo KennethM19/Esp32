@@ -11,7 +11,7 @@ if (empty($_SESSION['user'])) {
     <title>ESP32 WITH MYSQL DATABASE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/0c2588e818.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../asset/css/HomeStyle.css">
+    <link rel="stylesheet" href="../css/HomeStyle.css">
 </head>
 
 <body>

@@ -11,9 +11,9 @@ class HomeModel
         $this->PDO = $pdo->connect();
     }
 
-    public function updateUser($user, $password)
+    public function updateUser($campus, $user, $password)
     {
-        $statement = $this->PDO->prepare("INSERT INTO login VALUES (null, :user, :password)");
+        $statement = $this->PDO->prepare("INSERT INTO entities VALUES (null,:campus, :user, :password)");
         $statement->bindParam(":user", $user);
         $statement->bindParam(":password", $password);
         return ($statement->execute()) ? true : false;
@@ -21,7 +21,7 @@ class HomeModel
 
     public function getUsers($user)
     {
-        $statement = $this->PDO->prepare("SELECT password FROM login WHERE user = :user");
+        $statement = $this->PDO->prepare("SELECT password FROM entities WHERE user = :user");
         $statement->bindParam(":user", $user);
         if ($statement->execute()) {
             $result = $statement->fetch();

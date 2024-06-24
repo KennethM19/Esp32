@@ -13,7 +13,7 @@ $patients = $model->getPatients();
 <head>
     <title>ESP32 WITH MYSQL DATABASE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../asset/css/RecordPatientStyle.css">
+    <link rel="stylesheet" href="../css/RecordPatientStyle.css">
 </head>
 
 <body>

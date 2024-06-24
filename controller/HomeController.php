@@ -11,9 +11,9 @@ class HomeController
         $this->MODEL = new HomeModel();
     }
 
-    public function saveNewLogin($user, $password)
+    public function saveNewLogin($campus, $user, $password)
     {
-        return $this->MODEL->updateUser($this->cleanData($user), $this->encryptPassword($this->cleanData($password)));
+        return $this->MODEL->updateUser($this->cleanData($campus), $this->cleanData($user), $this->encryptPassword($this->cleanData($password)));
     }
 
     public function cleanData($data)

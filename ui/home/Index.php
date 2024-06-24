@@ -1,21 +1,29 @@
 <?php
-require_once("D:\UNMSM\IHC\ESP32\ui\head\Head.php");
+session_start();
 if (!empty($_SESSION['user'])) {
     header('location: recordPatient.php');
 }
 ?>
-<link rel="stylesheet" href="../../asset/css/LoginStyle.css">
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/LoginStyle.css">
 </head>
 <body>
 <div class="title">
     <h1>Monitoreo de salud</h1>
 </div>
 <div class="container">
-
+    <div>
+        <img class="doctorimg" src="../../img/doctor.png" alt="Doctores">
+    </div>
     <form action="Verify.php" method="post" class="login" autocomplete="off">
-        <div>
-            <img class="doctorimg" src="../../img/doctor.png" alt="Doctores">
-        </div>
         <section>
             <div class="credential">
                 <label for="user">Usuario</label>
@@ -32,6 +40,9 @@ if (!empty($_SESSION['user'])) {
             <?php endif; ?>
             <button type="submit" class="btn btn-primary">Ingresar</button>
         </section>
+        <div class="forgetPassword">
+            <a href="">¿Olvidó su contraseña?</a>
+        </div>
     </form>
 
 </div>
