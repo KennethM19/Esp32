@@ -1,7 +1,7 @@
 <?php
 require_once('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
-    header('location: Index.php');
+    header('location: pageIndex.php');
     exit();
 }
 ?>
@@ -23,7 +23,7 @@ if (empty($_SESSION['user'])) {
 <body>
 <div class="top">
     <h3>ESP32 WITH MYSQL DATABASE</h3>
-    <a href="Logout.php" class="button">Cerrar Sesión</a>
+    <a href="connLogout.php" class="button">Cerrar Sesión</a>
 </div>
 
 <br>
@@ -33,7 +33,7 @@ if (empty($_SESSION['user'])) {
         <h3 style="font-size: 1rem;">PACIENTE</h3>
 
     </div>
-    <form action="PatientForm.php" method="post" autocomplete="off" class="patient">
+    <form action="connPatientForm.php" method="post" autocomplete="off" class="patient">
         <div>
             <label for="document">Doc Identidad</label>
             <select name="docType" id="identity">

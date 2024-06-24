@@ -15,7 +15,7 @@ $error = "";
 if (empty($docType) || empty($docNum) || empty($name) || empty($lastname) || empty($gender)) {
     $error .= "<li>Complete todos los campos</li>";
     $error = rawurlencode($error);
-    $redirectUrl = "Patient.php?error=" . $error;
+    $redirectUrl = "pagePatient.php?error=" . $error;
     header("Location: " . $redirectUrl);
     exit();
 } else {
@@ -27,12 +27,12 @@ if (empty($docType) || empty($docNum) || empty($name) || empty($lastname) || emp
 
     if (!empty($error)) {
         $error = rawurlencode($error);
-        $redirectUrl = "Patient.php?error=" . $error;
+        $redirectUrl = "pagePatient.php?error=" . $error;
         header("Location: " . $redirectUrl);
         exit();
     } else {
         if ($patient->savePatient($docType, $docNum, $name, $lastname, $gender)) {
-            $redirectUrl = "Home.php?dni=" . $docNum . "&name=" . $name;
+            $redirectUrl = "pageHome.php?dni=" . $docNum . "&name=" . $name;
             header("Location: " . $redirectUrl);
         } else {
             echo "Ocurrio un error al guardar los datos";

@@ -2,7 +2,7 @@
 require_once('../../config/Sessions.php');
 require_once('../../model/HomeModel.php');
 if (empty($_SESSION['user'])) {
-    header('location: Index.php');
+    header('location: pageIndex.php');
     exit();
 }
 $model = new HomeModel();
@@ -19,7 +19,10 @@ $patients = $model->getPatients();
 <body>
 <div class="topnav">
     <h3>HEALTH MANAGEMENT</h3>
-    <a href="Logout.php" class="button">Cerrar Sesión</a>
+    <a href="connLogout.php" class="button">Cerrar Sesión</a>
+    <?php if ($_SESSION['user'] = 'admin'): ?>
+        <a href="pageNewLogin.php" class="button">Crear</a>
+    <?php endif; ?>
 </div>
 
 <br>
@@ -29,7 +32,7 @@ $patients = $model->getPatients();
 
 <section class="container">
     <div class="managPatient">
-        <a href="Patient.php" class="button">Nuevo</a>
+        <a href="pagePatient.php" class="button">Nuevo</a>
         <input type="text" placeholder="Buscar paciente" id="campo" name="campo" onkeyup="searchPatient()">
     </div>
     <table class="styled-table" id="table_id">

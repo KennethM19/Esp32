@@ -11,9 +11,9 @@ class HomeController
         $this->MODEL = new HomeModel();
     }
 
-    public function saveNewLogin($campus, $user, $password)
+    public function saveNewLogin($user, $campus, $password)
     {
-        return $this->MODEL->updateUser($this->cleanData($campus), $this->cleanData($user), $this->encryptPassword($this->cleanData($password)));
+        return $this->MODEL->updateEntity($this->cleanData($user), $this->cleanData($campus), $this->encryptPassword($this->cleanData($password)));
     }
 
     public function cleanData($data)
@@ -23,7 +23,7 @@ class HomeController
         return htmlspecialchars($data);
     }
 
-    public function encryptPassword($password)
+    private function encryptPassword($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!empty($_SESSION['user'])) {
-    header('location: recordPatient.php');
+    header('location: pageRecordPatient.php');
 }
 ?>
 <!doctype html>
@@ -23,7 +23,7 @@ if (!empty($_SESSION['user'])) {
     <div>
         <img class="doctorimg" src="../../img/doctor.png" alt="Doctores">
     </div>
-    <form action="Verify.php" method="post" class="login" autocomplete="off">
+    <form action="connVerify.php" method="post" class="login" autocomplete="off">
         <section>
             <div class="credential">
                 <label for="user">Usuario</label>
@@ -41,7 +41,7 @@ if (!empty($_SESSION['user'])) {
             <button type="submit" class="btn btn-primary">Ingresar</button>
         </section>
         <div class="forgetPassword">
-            <a href="">¿Olvidó su contraseña?</a>
+            <a href="pageChangePassword.php">¿Olvidó su contraseña?</a>
         </div>
     </form>
 

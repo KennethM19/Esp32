@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-$redirectUrl = 'Index.php';
+$redirectUrl = 'pageIndex.php';
 header("location:" . $redirectUrl);

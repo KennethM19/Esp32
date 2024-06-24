@@ -11,10 +11,11 @@ class HomeModel
         $this->PDO = $pdo->connect();
     }
 
-    public function updateUser($campus, $user, $password)
+    public function updateEntity($campus, $user, $password)
     {
         $statement = $this->PDO->prepare("INSERT INTO entities VALUES (null,:campus, :user, :password)");
         $statement->bindParam(":user", $user);
+        $statement->bindParam(":campus", $campus);
         $statement->bindParam(":password", $password);
         return ($statement->execute()) ? true : false;
     }

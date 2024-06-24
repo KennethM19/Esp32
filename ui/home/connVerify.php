@@ -7,17 +7,10 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     $password = $obj->cleanData($_POST['password']);
     $isVerified = $obj->verifyUsers($user, $password);
     if ($isVerified) {
-        if ($user == 'admin' && $password == 'admin') {
-            $_SESSION['user'] = $user;
-            session_destroy();
-            $redirectUrl = 'NewLogin.php';
-            header('location: ' . $redirectUrl);
-        } else {
-            $_SESSION['user'] = $user;
-            $redirectUrl = 'recordPatient.php';
-            header('location: ' . $redirectUrl);
-            exit();
-        }
+        $_SESSION['user'] = $user;
+        $redirectUrl = 'pageRecordPatient.php';
+        header('location: ' . $redirectUrl);
+        exit();
     } else {
         $error = "<li>Credenciales incorrectas</li>";
         header("location:index.php?error=" . $error);

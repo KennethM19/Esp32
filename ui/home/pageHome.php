@@ -1,7 +1,7 @@
 <?php
 require_once('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
-    header('location: Index.php');
+    header('location: pageIndex.php');
     exit();
 }
 ?>
@@ -17,8 +17,8 @@ if (empty($_SESSION['user'])) {
 <body>
 <div class="topnav">
     <h3>ESP32 WITH MYSQL DATABASE</h3>
-    <a href="Logout.php" class="button">Cerrar Sesión</a>
-    <a href="recordPatient.php" class="button">Nuevo Paciente</a>
+    <a href="connLogout.php" class="button">Cerrar Sesión</a>
+    <a href="pageRecordPatient.php" class="button">Nuevo Paciente</a>
 </div>
 
 <section>
