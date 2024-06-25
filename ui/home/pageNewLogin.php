@@ -50,7 +50,7 @@ session_start();
                     <?= (!empty($_GET['error'])) ? $_GET['error'] : "" ?>
                 </div>
             <?php endif; ?>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="btn btn-primary">Crear</button>
         </section>
 
     </form>

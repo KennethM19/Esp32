@@ -1,7 +1,11 @@
 <?php
 session_start();
 if (!empty($_SESSION['user'])) {
-    header('location: pageRecordPatient.php');
+    if ($_SESSION['user'] == 'admin') {
+        header('location: pageIndexAdmin.php');
+    } else {
+        header('location: pageRecordPatient.php');
+    }
 }
 ?>
 <!doctype html>
@@ -53,5 +57,3 @@ if (!empty($_SESSION['user'])) {
         crossorigin="anonymous"></script>
 </body>
 </html>
-
-

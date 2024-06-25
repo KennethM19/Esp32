@@ -13,9 +13,9 @@ class HomeModel
 
     public function updateEntity($campus, $user, $password)
     {
-        $statement = $this->PDO->prepare("INSERT INTO entities VALUES (null,:campus, :user, :password)");
-        $statement->bindParam(":user", $user);
+        $statement = $this->PDO->prepare("INSERT INTO entities VALUES (null, :campus, :user, :password)");
         $statement->bindParam(":campus", $campus);
+        $statement->bindParam(":user", $user);
         $statement->bindParam(":password", $password);
         return ($statement->execute()) ? true : false;
     }
@@ -36,11 +36,13 @@ class HomeModel
         }
     }
 
-    public function addPatient($docType, $docNum, $name, $lastname, $gender)
+    public function addPatient($docType, $docNum, $campus, $name, $lastname, $gender)
     {
-        $statement = $this->PDO->prepare("INSERT INTO patient VALUES (null, :docType, :docNum, :name, :lastname, :gender)");
+        $statement = $this->PDO->prepare("INSERT INTO patient_student VALUES (null, :campus, :docType, :docNum, :name, :lastname, :gender)");
         $statement->bindParam(":docType", $docType);
         $statement->bindParam(":docNum", $docNum);
+        $idCampus = $this->getIdCampus($campus);
+        $statement->bindParam(":campus", $idCampus);
         $statement->bindParam(":name", $name);
         $statement->bindParam(":lastname", $lastname);
         $statement->bindParam(":gender", $gender);
@@ -49,7 +51,7 @@ class HomeModel
 
     public function getPatients()
     {
-        $statement = $this->PDO->prepare("SELECT * FROM patient");
+        $statement = $this->PDO->prepare("SELECT * FROM patient_student");
         if ($statement->execute()) {
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } else {
@@ -57,7 +59,20 @@ class HomeModel
         }
     }
 
+    public function getIdCampus($campus)
+    {
+        $statement = $this->PDO->prepare("SELECT id FROM entities WHERE campus = :campus");
+        $statement->bindParam(":campus", $campus);
+        if ($statement->execute()) {
+            $result = $statement->fetch();
+            if ($result) {
+                return $result['id'];
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }
-
-
-

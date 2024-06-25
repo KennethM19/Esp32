@@ -162,8 +162,6 @@ $patients = $model->getPatients();
         changePage(current_page);
     };
 
-    //------------------------------------------------------------
-
     function searchPatient() {
         let input, filter, table, tr, td, i, j, txtValue;
         input = document.getElementById("campo");
@@ -192,4 +190,3 @@ $patients = $model->getPatients();
 </script>
 </body>
 </html>
-

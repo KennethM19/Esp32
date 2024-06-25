@@ -8,12 +8,16 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     $isVerified = $obj->verifyUsers($user, $password);
     if ($isVerified) {
         $_SESSION['user'] = $user;
-        $redirectUrl = 'pageRecordPatient.php';
+        if ($user == 'admin') {
+            $redirectUrl = 'pageIndexAdmin.php';
+        } else {
+            $redirectUrl = 'pageRecordPatient.php';
+        }
         header('location: ' . $redirectUrl);
         exit();
     } else {
         $error = "<li>Credenciales incorrectas</li>";
-        header("location:index.php?error=" . $error);
+        header("location:pageIndex.php?error=" . $error);
     }
 
 } else {

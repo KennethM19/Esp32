@@ -3,6 +3,7 @@ require_once '../../controller/HomeController.php';
 $obj = new HomeController();
 $user = $_POST["user"];
 $campus = $_POST["campus"];
+$campus = strtoupper($campus);
 $password = $_POST["password"];
 $confirmPassword = $_POST["confirmPassword"];
 $error = "";
@@ -15,7 +16,7 @@ if (empty($user) || empty($campus) || empty($password) || empty($confirmPassword
 } else if ($user && $campus && $password && $confirmPassword) {
     if ($password == $confirmPassword) {
         if ($obj->saveNewLogin($user, $campus, $password)) {
-            $redirectUrl = "pageRecordPatient.php";
+            $redirectUrl = "pageIndex.php";
             header("Location: " . $redirectUrl);
         }
 

@@ -11,9 +11,9 @@ class PatientController
         $this->MODEL = new HomeModel();
     }
 
-    public function savePatient($docType, $docNum, $name, $lastname, $gender)
+    public function savePatient($docType, $docNum, $campus, $name, $lastname, $gender)
     {
-        return $this->MODEL->addPatient($this->cleanData($docType), $this->cleanData($docNum), $this->cleanData($name), $this->cleanData($lastname), $this->cleanData($gender));
+        return $this->MODEL->addPatient($this->cleanData($docType), $this->cleanData($docNum), $this->cleanData($campus), $this->cleanData($name), $this->cleanData($lastname), $this->cleanData($gender));
     }
 
     public function cleanData($data)

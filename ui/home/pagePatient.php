@@ -16,6 +16,7 @@ if (empty($_SESSION['user'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="../css/PatientStyle.css">
 </head>
@@ -43,6 +44,19 @@ if (empty($_SESSION['user'])) {
             <input type="text" name="docNum">
         </div>
         <div>
+            <label for="text">Facultad</label>
+            <select class="selectCampus" name="campus" id="campus" style="max-width: 300px">
+                <?php
+                require_once("../../data/campus.php");
+                $campus = new Campus();
+                $data = $campus->facultades;
+                foreach ($data as $d) {
+                    echo "<option value='" . $d . "'>" . $d . "</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div>
             <label for="name">Nombre:</label>
             <input type="text" name="name">
         </div>
@@ -68,8 +82,16 @@ if (empty($_SESSION['user'])) {
 
 </div>
 
-
 <br>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.selectCampus').select2({
+            placeholder: "Seleccionar facultad...",
+            allowClear: true
+        });
+    });
+</script>
 </body>
 </html>

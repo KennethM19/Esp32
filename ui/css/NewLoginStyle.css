@@ -23,7 +23,7 @@ body {
     align-items: center;
 }
 
-.title {
+.tittle {
     margin: 2rem;
 }
 
@@ -34,6 +34,18 @@ body {
 input {
     border: none;
     border-radius: 0.2rem;
+    margin: 1rem 0;
+}
+
+.select2-selection {
+    margin: 1rem 0;
+}
+
+.select2-selection__clear {
+    display: none;
+}
+
+.select2-selection__arrow {
     margin: 1rem 0;
 }
 
