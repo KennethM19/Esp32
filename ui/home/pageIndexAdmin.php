@@ -3,6 +3,8 @@ require_once('../../config/Sessions.php');
 if (empty($_SESSION['user'])) {
     header('location: pageIndex.php');
     exit();
+} else if ($_SESSION['user'] != 'admin') {
+    header('location: pageRecordPatient.php');
 }
 ?>
 <!doctype html>

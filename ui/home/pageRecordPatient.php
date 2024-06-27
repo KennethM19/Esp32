@@ -6,7 +6,8 @@ if (empty($_SESSION['user'])) {
     exit();
 }
 $model = new HomeModel();
-$patients = $model->getPatients();
+$idCampus = $model->getIdCampus2($_SESSION['user']);
+$patients = $model->getPatients($idCampus);
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -20,7 +21,7 @@ $patients = $model->getPatients();
 <div class="topnav">
     <h3>HEALTH MANAGEMENT</h3>
     <a href="connLogout.php" class="button">Cerrar Sesión</a>
-    <?php if ($_SESSION['user'] = 'admin'): ?>
+    <?php if ($_SESSION['user'] == 'admin'): ?>
         <a href="pageNewLogin.php" class="button">Crear</a>
     <?php endif; ?>
 </div>
@@ -33,7 +34,7 @@ $patients = $model->getPatients();
 <section class="container">
     <div class="managPatient">
         <a href="pagePatient.php" class="button">Nuevo</a>
-        <input type="text" placeholder="Buscar paciente" id="campo" name="campo" onkeyup="searchPatient()">
+        <input type="text" placeholder="Buscar paciente" id="campo" name="campo" onkeyup="searchPatient()" autocomplete="false">
     </div>
     <table class="styled-table" id="table_id">
         <thead>

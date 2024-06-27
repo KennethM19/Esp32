@@ -49,9 +49,10 @@ class HomeModel
         return ($statement->execute()) ? true : false;
     }
 
-    public function getPatients()
+    public function getPatients($idCampus)
     {
-        $statement = $this->PDO->prepare("SELECT * FROM patient_student");
+        $statement = $this->PDO->prepare("SELECT * FROM patient_student where id_campus = :idcampus");
+        $statement->bindParam(":idcampus", $idCampus);
         if ($statement->execute()) {
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } else {
@@ -75,4 +76,19 @@ class HomeModel
         }
     }
 
+    public function getIdCampus2($user)
+    {
+        $statement = $this->PDO->prepare("SELECT id FROM entities WHERE user = :user");
+        $statement->bindParam(":user", $user);
+        if ($statement->execute()) {
+            $result = $statement->fetch();
+            if ($result) {
+                return $result['id'];
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
