@@ -1,11 +1,14 @@
 <?php
 require_once('../../config/Sessions.php');
+require_once '../../data/campus.php';
 if (empty($_SESSION['user'])) {
     header('location: pageIndex.php');
     exit();
 } else if ($_SESSION['user'] != 'admin') {
     header('location: pageRecordPatient.php');
 }
+$campus = new Campus();
+$data = $campus ->facultades;
 ?>
 <!doctype html>
 <html lang="es">
@@ -35,11 +38,8 @@ if (empty($_SESSION['user'])) {
                 </div>
                 <ul>
                     <?php
-                    require_once '../../data/campus.php';
-                    $campus = new Campus();
-                    $data = $campus ->facultades;
-                    foreach ($data as $d) {
-                        echo "<li value='" . $d . "'><a href='pageRecordPatient.php'>" . $d . "</a></li>";
+                    foreach ($data as $id => $name) {
+                        echo "<li value='" . $id . "'><a href='pageRecordPatient.php?id_campus=".$id."'>" . $name . "</a></li>";
                     }
                     ?>
                 </ul>

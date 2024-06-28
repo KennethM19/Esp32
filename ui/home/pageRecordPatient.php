@@ -6,8 +6,9 @@ if (empty($_SESSION['user'])) {
     exit();
 }
 $model = new HomeModel();
-$idCampus = $model->getIdCampus2($_SESSION['user']);
+$idCampus = isset($_GET['id_campus']) ? $_GET['id_campus'] + 2 : $model->getIdCampus2($_SESSION['user']);
 $patients = $model->getPatients($idCampus);
+$campus = $model->getIdCampus2($_SESSION['user'])-2;
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -33,8 +34,11 @@ $patients = $model->getPatients($idCampus);
 
 <section class="container">
     <div class="managPatient">
-        <a href="pagePatient.php" class="button">Nuevo</a>
-        <input type="text" placeholder="Buscar paciente" id="campo" name="campo" onkeyup="searchPatient()" autocomplete="false">
+        <input type="text" placeholder="Buscar paciente" id="campo" name="campo" onkeyup="searchPatient()"
+               autocomplete="false">
+        <?php
+             echo "<div class='newpatient'><a href='pagePatient.php?id_campus=".($idCampus-2)."'class='button'>Nuevo</a></div>"
+        ?>
     </div>
     <table class="styled-table" id="table_id">
         <thead>
@@ -186,7 +190,7 @@ $patients = $model->getPatients($idCampus);
     }
 
     function redirectPatient(dni, name) {
-        window.location.href = 'Home.php?dni=' + dni + '&name=' + name;
+        window.location.href = 'pageHome.php?dni=' + dni + '&name=' + name;
     }
 </script>
 </body>

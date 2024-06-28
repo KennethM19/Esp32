@@ -1,9 +1,13 @@
 <?php
 require_once('../../config/Sessions.php');
+require_once("../../data/campus.php");
 if (empty($_SESSION['user'])) {
     header('location: pageIndex.php');
     exit();
 }
+$campus = new Campus();
+$data = $campus->facultades;
+$idCampus = isset($_GET['id_campus']) ? $_GET['id_campus'] : "";
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -41,28 +45,23 @@ if (empty($_SESSION['user'])) {
                 <option value="dni">DNI</option>
                 <option value="pasaporte">Pasaporte</option>
             </select>
-            <input type="text" name="docNum">
+            <input type="text" name="docNum" autocomplete="off">
         </div>
         <div>
             <label for="text">Facultad</label>
             <select class="selectCampus" name="campus" id="campus" style="max-width: 300px">
                 <?php
-                require_once("../../data/campus.php");
-                $campus = new Campus();
-                $data = $campus->facultades;
-                foreach ($data as $d) {
-                    echo "<option value='" . $d . "'>" . $d . "</option>";
-                }
+                echo "<option value='" . $data[$idCampus] . "'>" . $data[$idCampus] . "</option>"
                 ?>
             </select>
         </div>
         <div>
             <label for="name">Nombre:</label>
-            <input type="text" name="name">
+            <input type="text" name="name" autocomplete="off">
         </div>
         <div>
             <label for="lastname">Apellido</label>
-            <input type="text" name="lastName">
+            <input type="text" name="lastName" autocomplete="off">
         </div>
         <div>
             <label for="gender">Género</label>
@@ -79,19 +78,8 @@ if (empty($_SESSION['user'])) {
         <button type="submit">Enviar</button>
     </form>
 
-
 </div>
 
-<br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.selectCampus').select2({
-            placeholder: "Seleccionar facultad...",
-            allowClear: true
-        });
-    });
-</script>
 </body>
 </html>
