@@ -23,6 +23,22 @@ body {
     font-size: 1.2rem;
 }
 
+.session {
+    padding: 0.5rem;
+    background-color: white;
+    display: flex;
+    justify-content: right;
+}
+
+.session a {
+    padding: 0 0.3rem;
+    text-decoration: none;
+    color: #183153;
+}
+.session a:hover{
+    color: #1b78e2;
+}
+
 .content {
     padding: 5px;
 }

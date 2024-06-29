@@ -27,7 +27,15 @@ a {
     color: white;
     font-size: 1.2rem;
 }
-
+.session {
+    display: flex;
+    justify-content: right;
+    margin: 0.5rem;
+    font-size: large;
+}
+.closed-session a:hover {
+    color: #1b78e2;
+}
 /* ----------------------------------- */
 
 /* ----------------------------------- TABLE STYLE */

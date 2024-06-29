@@ -17,8 +17,9 @@ if (empty($_SESSION['user'])) {
 <body>
 <div class="topnav">
     <h3>ESP32 WITH MYSQL DATABASE</h3>
-    <a href="connLogout.php" class="button">Cerrar Sesión</a>
-    <a href="pageRecordPatient.php" class="button">Nuevo Paciente</a>
+    <div class="session">
+        <a href="connLogout.php" class="button">Cerrar Sesión</a>
+    </div>
 </div>
 
 <section>
@@ -30,62 +31,26 @@ if (empty($_SESSION['user'])) {
 </section>
 
 
-<div class="content">
-    <div class="cards">
+<div class="cards">
 
-
-        <div class="card">
-            <div class="card header">
-                <h3 style="font-size: 1rem;">MONITORING ROOM</h3>
-            </div>
-
-
-            <h4 class="temperatureColor"><i class="fas fa-thermometer-half"></i> TEMPERATURE</h4>
-            <p class="temperatureColor"><span class="reading"><span id="ESP32_01_Temp"></span> &deg;C</span></p>
-            <h4 class="humidityColor"><i class="fas fa-tint"></i> HUMIDITY</h4>
-            <p class="humidityColor"><span class="reading"><span id="ESP32_01_Humd"></span> &percnt;</span></p>
-
-
-            <p class="statusreadColor"><span>Status Read Sensor DHT11 : </span><span
-                        id="ESP32_01_Status_Read_DHT11"></span></p>
-        </div>
-        <div class="card">
-            <div class="card header">
-                <h3 style="font-size: 1rem;">MONITORING PATIENT</h3>
-            </div>
-
-
-            <h4 class="temperatureColor"><i class="fas fa-thermometer-half"></i> TEMPERATURE </h4>
-            <p class="temperatureColor"><span class="reading"><span id="ESP32_01_Temp"></span> &deg;C</span></p>
-            <h4 class="heartbeatColor"><i class="fa fa-heartbeat" aria-hidden="true"></i> HEARTBEAT </h4>
-            <p class="humidityColor"><span class="reading"><span id="ESP32_01_Humd"></span> &percnt;</span></p>
-            <h4 class="oxygenBloodColor"><i class="fas fa-tint"></i> OXYGEN BLOOD</h4>
-
-
-            <p class="statusreadColor"><span>Status Read Sensor DHT11 : </span><span
-                        id="ESP32_01_Status_Read_DHT11"></span></p>
+    <div class="card">
+        <div class="card header">
+            <h3 style="font-size: 1rem;">MONITORING PATIENT</h3>
         </div>
 
-        <div class="card">
-            <div class="card header">
-                <h3 style="font-size: 1rem;">CONTROLLING</h3>
-            </div>
+
+        <h4 class="temperatureColor"><i class="fas fa-thermometer-half"></i> TEMPERATURE </h4>
+        <p class="temperatureColor"><span class="reading"><span id="ESP32_01_Temp"></span> &deg;C</span></p>
+        <h4 class="heartbeatColor"><i class="fa fa-heartbeat" aria-hidden="true"></i> HEARTBEAT </h4>
+        <p class="humidityColor"><span class="reading"><span id="ESP32_01_Humd"></span> &percnt;</span></p>
+        <h4 class="oxygenBloodColor"><i class="fas fa-tint"></i> OXYGEN BLOOD</h4>
 
 
-            <h4 class="LEDColor"><i class="fas fa-lightbulb"></i> LED 1</h4>
-            <label class="switch">
-                <input type="checkbox" id="ESP32_01_TogLED_01" onclick="GetTogBtnLEDState('ESP32_01_TogLED_01')">
-                <div class="sliderTS"></div>
-            </label>
-            <h4 class="LEDColor"><i class="fas fa-lightbulb"></i> LED 2</h4>
-            <label class="switch">
-                <input type="checkbox" id="ESP32_01_TogLED_02" onclick="GetTogBtnLEDState('ESP32_01_TogLED_02')">
-                <div class="sliderTS"></div>
-            </label>
-
-        </div>
-
+        <p class="statusreadColor"><span>Status Read Sensor DHT11 : </span><span
+                    id="ESP32_01_Status_Read_DHT11"></span></p>
     </div>
+
+
 </div>
 
 <br>

@@ -26,9 +26,11 @@ $idCampus = isset($_GET['id_campus']) ? $_GET['id_campus'] : "";
 </head>
 
 <body>
-<div class="top">
+<div class="topnav">
     <h3>ESP32 WITH MYSQL DATABASE</h3>
-    <a href="connLogout.php" class="button">Cerrar Sesión</a>
+    <div class="session">
+        <a href="connLogout.php" class="button">Cerrar Sesión</a>
+    </div>
 </div>
 
 <br>

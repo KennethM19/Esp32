@@ -8,7 +8,7 @@ if (empty($_SESSION['user'])) {
 $model = new HomeModel();
 $idCampus = isset($_GET['id_campus']) ? $_GET['id_campus'] + 2 : $model->getIdCampus2($_SESSION['user']);
 $patients = $model->getPatients($idCampus);
-$campus = $model->getIdCampus2($_SESSION['user'])-2;
+$campus = $model->getIdCampus2($_SESSION['user']) - 2;
 ?>
 <!DOCTYPE HTML>
 <html lang="es">
@@ -21,10 +21,11 @@ $campus = $model->getIdCampus2($_SESSION['user'])-2;
 <body>
 <div class="topnav">
     <h3>HEALTH MANAGEMENT</h3>
-    <a href="connLogout.php" class="button">Cerrar Sesión</a>
-    <?php if ($_SESSION['user'] == 'admin'): ?>
-        <a href="pageNewLogin.php" class="button">Crear</a>
-    <?php endif; ?>
+</div>
+<div class="session">
+    <div class="closed-session">
+        <a href="connLogout.php" class="button">Cerrar Sesión</a>
+    </div>
 </div>
 
 <br>
@@ -37,7 +38,7 @@ $campus = $model->getIdCampus2($_SESSION['user'])-2;
         <input type="text" placeholder="Buscar paciente" id="campo" name="campo" onkeyup="searchPatient()"
                autocomplete="false">
         <?php
-             echo "<div class='newpatient'><a href='pagePatient.php?id_campus=".($idCampus-2)."'class='button'>Nuevo</a></div>"
+        echo "<div class='newpatient'><a href='pagePatient.php?id_campus=" . ($idCampus - 2) . "'class='button'>Nuevo</a></div>"
         ?>
     </div>
     <table class="styled-table" id="table_id">
