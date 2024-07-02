@@ -53,10 +53,17 @@ body {
 .card.header {
     background-color: #0c6980;
     color: white;
+    padding: 0.5rem 0;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.card button {
+    border-radius: 20px;
 }
 
 .cards {
