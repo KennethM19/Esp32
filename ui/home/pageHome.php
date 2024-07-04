@@ -62,25 +62,37 @@ if (empty($_SESSION['user'])) {
 </div>
 
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const dni = urlParams.get('dni');
-    const name = urlParams.get('name');
 
-    document.getElementById("docNum").textContent = dni;
-    document.getElementById("name").textContent = name;
+    document.getElementById('ESP32_01_Temp').innerHTML = "NN";
+    document.getElementById('ESP32_01_HBT').innerHTML = "NN";
+    document.getElementById('ESP32_01_OXY').innerHTML = "NN";
 
-    function updateData() {
-        fetch("D:\UNMSM\IHC\ESP32\config\getDiagnostics.php")  // Cambia esto por la ruta a tu script PHP que obtiene los datos
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("ESP32_01_Temp").innerHTML = data.temperature;
-                document.getElementById("ESP32_01_HBT").innerHTML = data.heartbeat;
-                document.getElementById("ESP32_01_OXY").innerHTML = data.oxygen;
-            })
-            .catch(error => console.error('Error fetching data:', error));
+    getData();
+
+    setInterval(myTimer, 500);
+
+    function myTimer() {
+        getData();
     }
 
-    setInterval(updateData, 1000);
+    function getData() {
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function () {
+            const myObj = JSON.parse(this.responseText);
+            document.getElementById("ESP32_01_Temp").innerHTML = myObj.temperature;
+            document.getElementById("ESP32_01_HBT").innerHTML = myObj.heartbeat;
+            document.getElementById("ESP32_01_OXY").innerHTML = myObj.oxygen;
+        }
+        xmlhttp.open("POST","getDiagnostics.php",true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send();
+    }
+
 </script>
 </body>
 </html>

@@ -11,15 +11,4 @@ class Esp32Model
         $this->PDO = $pdo->connect();
     }
 
-    public function getLastDiagnostic()
-    {
-        $statement = $this->PDO->prepare("SELECT * FROM diagnostic_test ORDER BY id DESC LIMIT 1");
-        if ($statement->execute()) {
-            $result = $statement->fetch(PDO::FETCH_ASSOC);
-            if ($result) {
-                return $result;
-            }
-        }
-        return false;
-    }
 }
