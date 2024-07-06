@@ -2,10 +2,10 @@
 
 class dataBase
 {
-    private $host = "localhost";
+    private $host = "127.0.0.1:3307";
     private $dbname = "esp32";
     private $user = "root";
-    private $pass = "root";
+    private $pass = "";
 
     public function connect()
     {

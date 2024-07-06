@@ -60,6 +60,11 @@ class HomeModel
         }
     }
 
+    public function getIdPatient($idCampus)
+    {
+
+    }
+
     public function getIdCampus($campus)
     {
         $statement = $this->PDO->prepare("SELECT id FROM entities WHERE campus = :campus");

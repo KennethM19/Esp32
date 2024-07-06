@@ -22,11 +22,11 @@ if (empty($_SESSION['user'])) {
     </div>
 </div>
 
-<section>
+<section class="student">
     <h3>PACIENTE</h3>
-    <div id="data-student">
-        <p>DNI <span id="docNum"></span></p>
-        <p>Nombre <span id="name"></span></p>
+    <div id="data-student" class="data-student">
+        <p>DNI: </p><span id="docNum"></span>
+        <p>Nombre: </p><span id="name"></span>
     </div>
 </section>
 
@@ -50,19 +50,19 @@ if (empty($_SESSION['user'])) {
 
 </div>
 
-<br>
-
 <div class="content">
     <div class="cards">
-        <div class="card header" style="border-radius: 15px;">
-            <button onclick="window.open('recordPatient.php');">Open Record Table</button>
-            <h3 style="font-size: 0.7rem;"></h3>
+        <div class="card footer" style="border-radius: 15px;">
+            <button onclick="saveData()">Guardar datos</button>
+            <button onclick="openRecordTable()">Open Record Table</button>
         </div>
     </div>
 </div>
 
 <script>
 
+    document.getElementById('docNum').innerText = getUrlParameter('dni');
+    document.getElementById('name').innerText = getUrlParameter('name');
     document.getElementById('ESP32_01_Temp').innerHTML = "NN";
     document.getElementById('ESP32_01_HBT').innerHTML = "NN";
     document.getElementById('ESP32_01_OXY').innerHTML = "NN";
@@ -93,6 +93,46 @@ if (empty($_SESSION['user'])) {
         xmlhttp.send();
     }
 
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    function saveData() {
+        var dni = getUrlParameter('dni');
+        var temperature = document.getElementById("ESP32_01_Temp").innerText;
+        var heartbeat = document.getElementById("ESP32_01_HBT").innerText;
+        var oxygen = document.getElementById("ESP32_01_OXY").innerText;
+
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const response = JSON.parse(this.responseText);
+                if (response.status === 'success') {
+                    alert(response.message);
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            }
+        }
+
+        xmlhttp.open("POST", "connDataBase.php", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("dni=" + dni + "&temperature=" + temperature + "&heartbeat=" + heartbeat + "&oxygen=" + oxygen);
+    }
+
+    function openRecordTable() {
+        var dni = getUrlParameter('dni');
+        var url = 'pageRecordDiagnostic.php?dni=' + dni;
+        window.location.href = url;
+    }
 </script>
 </body>
 </html>
