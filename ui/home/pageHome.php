@@ -8,7 +8,7 @@ if (empty($_SESSION['user'])) {
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
-    <title>ESP32 WITH MYSQL DATABASE</title>
+    <title>ESP32</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/0c2588e818.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/HomeStyle.css">
@@ -16,7 +16,6 @@ if (empty($_SESSION['user'])) {
 
 <body>
 <div class="topnav">
-    <h3>ESP32 WITH MYSQL DATABASE</h3>
     <div class="session">
         <a href="connLogout.php" class="button">Cerrar Sesión</a>
     </div>

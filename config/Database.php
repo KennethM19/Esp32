@@ -2,8 +2,8 @@
 
 class dataBase
 {
-    private $host = "127.0.0.1:3307";
-    private $dbname = "esp32";
+    private $host = "your_host";
+    private $dbname = "your_database_name"; //En mi caso esp32
     private $user = "root";
     private $pass = "";
 
@@ -19,6 +19,3 @@ class dataBase
     }
 
 }
-
-//$obj = new dataBase();
-//print_r($obj->connect());

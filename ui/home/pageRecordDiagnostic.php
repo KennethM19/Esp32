@@ -1,6 +1,10 @@
 <?php
     require_once '../../config/Sessions.php';
     require_once '../../config/Database.php';
+if (empty($_SESSION['user'])) {
+    header('location: pageIndex.php');
+    exit();
+}
     $db = new Database();
     $id = $_GET['dni'];
 ?>
